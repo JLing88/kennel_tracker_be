@@ -10,20 +10,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_201417) do
+ActiveRecord::Schema.define(version: 2018_12_18_212006) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
-
-  create_table "vets", force: :cascade do |t|
-    t.string "practice_name"
-    t.string "vet_name"
-    t.text "address"
-    t.string "phone"
-    t.string "email"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
 
   create_table "owners", force: :cascade do |t|
     t.string "first_name"
@@ -35,4 +25,35 @@ ActiveRecord::Schema.define(version: 2018_12_18_201417) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  create_table "pets", force: :cascade do |t|
+    t.string "name"
+    t.string "species"
+    t.string "breed"
+    t.string "color"
+    t.datetime "dob"
+    t.boolean "spayed_neutered"
+    t.text "medications"
+    t.text "feeding_instructions"
+    t.text "shots"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+  
+  create_table "runs", force: :cascade do |t|
+    t.integer "run_number"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "vets", force: :cascade do |t|
+    t.string "practice_name"
+    t.string "vet_name"
+    t.text "address"
+    t.string "phone"
+    t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
 end
