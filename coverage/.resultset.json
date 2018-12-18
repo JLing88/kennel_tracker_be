@@ -1,7 +1,17 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/jling/turing/4module/projects/kennel_tracker_be/kennel_tracker_be/app/models/owner.rb": [
+        1,
+        null,
+        null
+      ],
+      "/Users/jling/turing/4module/projects/kennel_tracker_be/kennel_tracker_be/app/models/application_record.rb": [
+        1,
+        1,
+        null
+      ]
     },
-    "timestamp": 1545163491
+    "timestamp": 1545164257
   }
 }
