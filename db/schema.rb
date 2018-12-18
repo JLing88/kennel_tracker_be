@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(version: 2018_12_18_212006) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "pets", force: :cascade do |t|
+    t.string "name"
+    t.string "species"
+    t.string "breed"
+    t.string "color"
+    t.datetime "dob"
+    t.boolean "spayed_neutered"
+    t.text "medications"
+    t.text "feeding_instructions"
+    t.text "shots"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+  
   create_table "runs", force: :cascade do |t|
     t.integer "run_number"
     t.datetime "created_at", null: false
