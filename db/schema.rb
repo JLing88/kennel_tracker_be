@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_18_212006) do
+ActiveRecord::Schema.define(version: 2018_12_18_214407) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -39,7 +39,23 @@ ActiveRecord::Schema.define(version: 2018_12_18_212006) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
-  
+
+  create_table "reservations", force: :cascade do |t|
+    t.bigint "pet_id"
+    t.bigint "owner_id"
+    t.bigint "run_id"
+    t.datetime "checkin"
+    t.datetime "checkout"
+    t.boolean "grooming"
+    t.boolean "daycare"
+    t.boolean "boarding"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["owner_id"], name: "index_reservations_on_owner_id"
+    t.index ["pet_id"], name: "index_reservations_on_pet_id"
+    t.index ["run_id"], name: "index_reservations_on_run_id"
+  end
+
   create_table "runs", force: :cascade do |t|
     t.integer "run_number"
     t.datetime "created_at", null: false
@@ -56,4 +72,7 @@ ActiveRecord::Schema.define(version: 2018_12_18_212006) do
     t.datetime "updated_at", null: false
   end
 
+  add_foreign_key "reservations", "owners"
+  add_foreign_key "reservations", "pets"
+  add_foreign_key "reservations", "runs"
 end
