@@ -25,4 +25,12 @@ ActiveRecord::Schema.define(version: 2018_12_18_201417) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "owners", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.text "address"
+    t.string "home_phone"
+    t.string "cell_phone"
+    t.string "email"
+  end
 end
