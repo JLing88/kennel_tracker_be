@@ -22,6 +22,8 @@ ActiveRecord::Schema.define(version: 2018_12_18_201010) do
     t.string "home_phone"
     t.string "cell_phone"
     t.string "email"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
 end
