@@ -1,5 +1,5 @@
 FactoryBot.define do
   factory :run do
-    run_number { 1 }
+    sequence(:run_number) { |n| "#{n}" }
   end
 end
