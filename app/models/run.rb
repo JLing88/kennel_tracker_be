@@ -1,3 +1,5 @@
 class Run < ApplicationRecord
-  has_many :reservations
+  validates :run_number, presence: true
+
+  has_many :reservations, dependent: :destroy
 end
