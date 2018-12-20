@@ -27,6 +27,7 @@ group :development, :test do
   gem 'simplecov'
   gem 'database_cleaner'
   gem 'codecov'
+  gem 'faker'
 end
 
 group :development do
