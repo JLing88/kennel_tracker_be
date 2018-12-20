@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_20_020429) do
+ActiveRecord::Schema.define(version: 2018_12_18_221338) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,7 +61,7 @@ ActiveRecord::Schema.define(version: 2018_12_20_020429) do
   create_table "reservations", force: :cascade do |t|
     t.bigint "pet_id"
     t.bigint "owner_id"
-    t.bigint "run_number"
+    t.integer "run_number"
     t.datetime "checkin"
     t.datetime "checkout"
     t.boolean "grooming"
@@ -71,12 +71,6 @@ ActiveRecord::Schema.define(version: 2018_12_20_020429) do
     t.datetime "updated_at", null: false
     t.index ["owner_id"], name: "index_reservations_on_owner_id"
     t.index ["pet_id"], name: "index_reservations_on_pet_id"
-  end
-
-  create_table "runs", force: :cascade do |t|
-    t.integer "run_number"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "vets", force: :cascade do |t|
