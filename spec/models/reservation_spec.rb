@@ -16,8 +16,8 @@ RSpec.describe Reservation, type: :model do
       it 'returns current reservations' do
         owner1 = create(:owner)
         owner2 = create(:owner)
-        reservation1, reservation2 = create_list(:reservation, 2, owner: owner1)
-        reservation3 = create(:reservation, owner: owner2, checkin: Time.current.tomorrow, checkout: Time.current.advance(days: 2))
+        reservation1, reservation2 = create_list(:reservation, 2, owner: owner1, checkin: 4.days.ago, checkout: 5.days.from_now)
+        reservation3 = create(:reservation, owner: owner2, checkin: 10.days.ago, checkout: 7.days.ago)
 
         result = Reservation.current
 
