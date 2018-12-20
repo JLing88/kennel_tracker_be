@@ -1,9 +1,12 @@
 class Api::V1::OwnersController < ApplicationController
   def create
     owner = Owner.new(owner_params)
-    owner.save
 
-    render json: { "message": "Owner created" }, status: 201
+    if owner.save
+      render json: { "message": "Owner created" }, status: 201
+    else
+      render json: { "error": owner.errors.full_messages.join(', ') }, status: 400
+    end
   end
 
   private
