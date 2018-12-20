@@ -4,7 +4,9 @@ Rails.application.routes.draw do
       namespace :reservations do
         get '/current', to: 'current#index'
       end
-      get 'vets', to: 'vets#index'
+
+      post '/owners', to: 'owners#create'
+      get '/vets', to: 'vets#index'
     end
   end
 end
