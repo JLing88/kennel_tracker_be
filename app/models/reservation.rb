@@ -3,5 +3,6 @@ class Reservation < ApplicationRecord
 
   belongs_to :pet
   belongs_to :owner
-  belongs_to :run
+
+  scope :current, -> { where(checkin: Time.current.all_day).where(checkout: Time.current.all_day) }
 end
