@@ -28,7 +28,7 @@ This is a student led project with a real-world business application and use.
 
 ## Development Team
 
-* [Mike McKee](httpgit puls://github.com/mikecm1141/)
+* [Mike McKee](https://github.com/mikecm1141/)
 * [Jesse Ling](https://github.com/jling88)
 * [Ahmad Kayyali](https://github.com/kayyali18)
 * [Laura Shamus](https://github.com/lkshamus)

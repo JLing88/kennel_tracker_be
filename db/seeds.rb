@@ -1,5 +1,3 @@
-require 'faker'
-
 owners = []
 vets   = []
 pets   = []
