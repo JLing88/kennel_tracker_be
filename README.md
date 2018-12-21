@@ -1,5 +1,7 @@
 # Kennel Tracker Back End
 
+[![codecov](https://codecov.io/gh/mikecm1141/kennel_tracker_be/branch/master/graph/badge.svg)](https://codecov.io/gh/mikecm1141/kennel_tracker_be)
+
 ## Table of Contents
 
 * [Live Links](#live-links)

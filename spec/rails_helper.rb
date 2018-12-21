@@ -7,7 +7,7 @@ require 'simplecov'
 require 'codecov'
 
 SimpleCov.start
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+# SimpleCov.formatter = SimpleCov::Formatter::Codecov
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
