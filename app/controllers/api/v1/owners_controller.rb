@@ -1,4 +1,8 @@
 class Api::V1::OwnersController < ApplicationController
+  def index
+    render json: OwnerSerializer.new(Owner.all).serialized_json, status: 200
+  end
+
   def create
     owner = Owner.new(owner_params)
 
