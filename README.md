@@ -10,6 +10,10 @@
 * [Back-end API Endpoints](#backend-api-endpoints)
     * [Current Reservations](#current-reservations)
         * [GET /api/v1/reservations/current](#get-apiv1reservationscurrent)
+    * [Vet Endpoints](#vet-endpoints)
+        * [GET /api/v1/vets](#get-apiv1vets)
+    * [Owner Endpoints](#owner-endpoints)
+        * [POST /api/v1/owners](#post-apiv1owners)
 
 ## Live Links
 
@@ -141,4 +145,103 @@ and pet information.
         }
       }
     } ...
+```
+
+### Vet Endpoints
+
+#### GET /api/v1/vets
+
+This endpoint returns a list of all vets currently in the database.
+
+**Example Response**
+
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "vet",
+            "attributes": {
+                "practice_name": "Huels Group",
+                "vet_name": "Dr. Rene Simonis III",
+                "address": "3121 Herzog Plain, East Shaunnafurt, ME 22297",
+                "phone": "616.445.0849",
+                "email": "palmira@trompwatsica.info"
+            }
+        },
+        {
+            "id": "2",
+            "type": "vet",
+            "attributes": {
+                "practice_name": "Schmeler-Harber",
+                "vet_name": "Dr. Jazmine Kilback",
+                "address": "36074 Lesa Glens, Wuckertville, LA 62025",
+                "phone": "(155) 230-7742",
+                "email": "clifford@kulas.name"
+            }
+        } ...
+    ]
+}
+```
+
+### Owner Endpoints
+
+#### POST /api/v1/owners
+
+This endpoint will create a new owner in the database. Returns a 201 upon
+successful entry.  __First Name, Last Name, Address, and Home Phone are all
+required fields.__
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "first_name": "George",
+    "last_name": "Costanza",
+    "address": "1700 16th St. New York City, NY 11111",
+    "home_phone": "(555) 303 3003",
+    "cell_phone": "(555) 300-3000",
+    "email": "george@importerexporter.com" 
+}
+```
+
+**Example Response**
+
+```json
+{
+    "message": "Owner created"
+}
+```
+
+Missing or invalid Owner creation parameters or missing header values will 
+result in an error and a 400 status code response.
+
+**Example Request**
+
+```json
+{
+    "first_name": "",
+    "last_name": "",
+    "address": "1700 16th St. New York City, NY 11111",
+    "home_phone": "(720) 303 3003",
+    "cell_phone": "(720) 300-3000",
+    "email":"george@importerexporter.com"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "error": "First name can't be blank, Last name can't be blank"
+}
 ```
