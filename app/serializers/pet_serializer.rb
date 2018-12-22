@@ -11,4 +11,8 @@ class PetSerializer
              :medications,
              :feeding_instructions,
              :shots
+
+  attribute :dob do |pet|
+    pet.dob.to_date
+  end
 end
