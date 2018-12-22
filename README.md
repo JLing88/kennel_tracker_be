@@ -1,5 +1,7 @@
 # Kennel Tracker Back End
 
+[![ruby](https://img.shields.io/badge/ruby-v2.5.1-red.svg)](https://www.ruby-lang.org/en/)
+[![rails](https://img.shields.io/badge/rails-v5.2.2-orange.svg)](https://rubyonrails.org/)
 [![codecov](https://codecov.io/gh/mikecm1141/kennel_tracker_be/branch/master/graph/badge.svg)](https://codecov.io/gh/mikecm1141/kennel_tracker_be)
 
 ## Table of Contents
@@ -9,12 +11,18 @@
 * [Development Team](#development-team)
 * [System & Application Requirements](#system--application-requirements)
 * [Installation & Database Initialization](#installation--database-initialization)
+* [Test Suite](#test-suite)
+    * [Running the Test Suite](#running-the-test-suite)
+* [Dependencies](#dependencies)
+    * [Testing & Development](#testing--development)
+    * [Production](#production)
 * [Back-end API Endpoints](#backend-api-endpoints)
     * [Current Reservations](#current-reservations)
         * [GET /api/v1/reservations/current](#get-apiv1reservationscurrent)
     * [Vet Endpoints](#vet-endpoints)
         * [GET /api/v1/vets](#get-apiv1vets)
     * [Owner Endpoints](#owner-endpoints)
+        * [GET /api/v1/owners](#get-apiv1owners)
         * [POST /api/v1/owners](#post-apiv1owners)
 
 ## Live Links
@@ -41,11 +49,53 @@ This is a student led project with a real-world business application and use.
 
 ## System & Application Requirements
 
-* Coming Soon
+* [Ruby v2.5.1](https://www.ruby-lang.org/en/)
+* [Ruby on Rails v5.2.2](https://rubyonrails.org/)
+* [Bundler](https://bundler.io/)
 
 ## Installation & Database Initialization
 
-* Coming Soon
+1. Clone this repo to your local machine 
+`git clone git@github.com:mikecm1141/kennel_tracker_be.git`
+1. Change directories to the cloned project directory
+1. Run `bundle install` to install the required dependencies
+1. Run `rails db:{create,migrate}` to create the database and run migrations
+1. (Optional) Run `rails db:seed` to seed the database with some fake default
+data
+1. Run `rails server` to start up the server
+1. Application now available at `http://localhost:3000`
+
+## Test Suite
+
+This project is tested using [RSpec](http://rspec.info/), and aims to hit 100%
+test coverage at all times.
+
+### Running the Test Suite
+
+1. Navigate to installed project directory
+1. Run `rspec` to run the full test suite
+
+## Dependencies
+
+The following are the dependencies for this application.
+
+### Testing & Development
+
+* [RSpec-Rails](https://github.com/rspec/rspec-rails)
+* [Capybara](https://github.com/teamcapybara/capybara)
+* [Factory Bot](https://github.com/thoughtbot/factory_bot)
+* [Shoulda Matchers](https://github.com/thoughtbot/shoulda-matchers)
+* [Pry](https://github.com/pry/pry)
+* [SimpleCov](https://github.com/colszowka/simplecov)
+* [Database Cleaner](https://github.com/DatabaseCleaner/database_cleaner)
+* [CodeCov](https://github.com/codecov/codecov-ruby)
+
+### Production
+
+* [Fast JSON Api](https://github.com/Netflix/fast_jsonapi)
+* [Figaro](https://github.com/laserlemon/figaro)
+* [Faker](https://github.com/stympy/faker)
+* [Rack-CORS](https://github.com/cyu/rack-cors)
 
 ## Back-end API Endpoints
 
@@ -187,6 +237,44 @@ This endpoint returns a list of all vets currently in the database.
 ```
 
 ### Owner Endpoints
+
+#### GET /api/v1/owners
+
+This endpoint will return all owners currently in the database. Returns a 200
+status code.
+
+**Example Response**
+
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "owner",
+            "attributes": {
+                "firstName": "Chadwick",
+                "lastName": "Howell",
+                "address": "50398 Kirlin Motorway, North Lauraview, SD 82594",
+                "homePhone": "(213) 937-1325",
+                "cellPhone": "842.960.0708",
+                "email": "marilounienow@heaney.biz"
+            }
+        },
+        {
+            "id": "2",
+            "type": "owner",
+            "attributes": {
+                "firstName": "Lora",
+                "lastName": "Fahey",
+                "address": "Suite 666 1719 Christoper Cape, West Bellfort, AZ 92662",
+                "homePhone": "995.256.7246",
+                "cellPhone": "1-643-290-1584",
+                "email": "andreaswiza@langbarton.biz"
+            }
+        }, ...
+    ]    
+}
+```
 
 #### POST /api/v1/owners
 
