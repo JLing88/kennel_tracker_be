@@ -4,5 +4,8 @@ class Reservation < ApplicationRecord
   belongs_to :pet
   belongs_to :owner
 
-  scope :current, -> { where(':date BETWEEN checkin AND checkout', date: Date.current) }
+  scope :current, -> { 
+    where(':date BETWEEN checkin AND checkout', date: Date.current)
+      .includes(%i[owner pet])
+  }
 end
