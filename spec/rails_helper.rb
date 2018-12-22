@@ -4,10 +4,14 @@ require File.expand_path('../../config/environment', __FILE__)
 abort("The Rails environment is running in production mode!") if Rails.env.production?
 require 'rspec/rails'
 require 'simplecov'
-require 'codecov'
 
 SimpleCov.start
-SimpleCov.formatter = SimpleCov::Formatter::Codecov
+
+if ENV['CODE_ENV'] == 'CI'
+  require 'codecov'
+  SimpleCov.formatter = SimpleCov::Formatter::Codecov
+end
+
 begin
   ActiveRecord::Migration.maintain_test_schema!
 rescue ActiveRecord::PendingMigrationError => e
