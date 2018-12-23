@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe '/api/v1/vets' do
+describe 'Vet API Endpoints' do
   it 'returns all vet info' do
     vet_1, vet_2, vet_3, vet_4, vet_5 = create_list(:vet, 5)
     get '/api/v1/vets'
