@@ -30,28 +30,28 @@ describe "Vet API endpoint" do
       expect(result[:message]).to eq("Vet updated")
     end
 
-    # it 'will not update if pet ID is invalid' do
-    #   pet = create(:pet)
+    it 'will not update if pet ID is invalid' do
+      pet = create(:pet)
 
-    #   headers = {
-    #     "Content-Type":"application/json",
-    #     "Accept":"applicaton/json"
-    #   }
+      headers = {
+        "Content-Type":"application/json",
+        "Accept":"applicaton/json"
+      }
 
-    #   payload = {
-    #     id: 400,
-    #     name: "Toby",
-    #     color: "white"
-    #   }
+      payload = {
+        id: 400,
+        practice_name: "PetCo",
+        vet_name: "Dr. Suess"
+      }
 
-    #   patch '/api/v1/vets', headers: headers, params: payload.to_json
+      patch '/api/v1/vets', headers: headers, params: payload.to_json
 
-    #   result = JSON.parse(response.body, symbolize_names: true)
+      result = JSON.parse(response.body, symbolize_names: true)
 
-    #   expect(response.status).to eq(400)
-    #   expect(result).to be_a(Hash)
-    #   expect(result).to have_key(:error)
-    #   expect(result[:error]).to eq("Pet with ID 400 not found")
-    # end
+      expect(response.status).to eq(400)
+      expect(result).to be_a(Hash)
+      expect(result).to have_key(:error)
+      expect(result[:error]).to eq("Vet with ID 400 not found")
+    end
   end
 end
