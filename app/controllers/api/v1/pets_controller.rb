@@ -28,4 +28,8 @@ class Api::V1::PetsController < ApplicationController
                                 :shots
                                 )
   end
+
+  def get_pet
+    @pet ||= Pet.find_by_id(params[:id])
+  end
 end
