@@ -43,6 +43,7 @@ describe 'Vets API Endpoint' do
       post '/api/v1/vets', headers: headers, params: payload.to_json
 
       result = JSON.parse(response.body, symbolize_names: true)
+
       expect(response.status).to eq(400)
       expect(result).to be_a(Hash)
       expect(result).to have_key(:error)
