@@ -19,11 +19,21 @@
 * [Back-end API Endpoints](#backend-api-endpoints)
     * [Current Reservations](#current-reservations)
         * [GET /api/v1/reservations/current](#get-apiv1reservationscurrent)
+    * [Reservation Endpoints](#reservation-endpoints)
+        * [POST /api/v1/reservations](#post-apiv1reservations)
+        * [PATCH /api/v1/reservations](#patch-apiv1reservations)
+    * [Pet Endpoints](#pet-endpoints)
+        * [GET /api/v1/pets](#get-apiv1pets)
+        * [POST /api/v1/pets](#post-apiv1pets)
+        * [PATCH /api/v1/pets](#patch-apiv1pets)
     * [Vet Endpoints](#vet-endpoints)
         * [GET /api/v1/vets](#get-apiv1vets)
+        * [POST /api/v1/vets](#post-apiv1vets)
+        * [PATCH /api/v1/vets](#patch-apiv1vets)
     * [Owner Endpoints](#owner-endpoints)
         * [GET /api/v1/owners](#get-apiv1owners)
         * [POST /api/v1/owners](#post-apiv1owners)
+        * [PATCH /api/v1/owners](#patch-apiv1owners)
 
 ## Live Links
 
@@ -198,6 +208,8 @@ and pet information.
       }
     } ...
 ```
+
+### Reservation Endpoints
 
 #### POST /api/v1/reservations
 
@@ -661,7 +673,7 @@ and must be a valid ID for successful patch.
 
 {
     "id": "1",
-    "medications": "Insulin 2x a day"
+    "address": "1000 New Address Road, Denver, CO 80204"
 }
 ```
 
@@ -669,11 +681,11 @@ and must be a valid ID for successful patch.
 
 ```json
 {
-    "message": "Pet updated"
+    "message": "Vet updated"
 }
 ```
 
-Missing or invalid pet ID will result in a 400 error and an error message.
+Missing or invalid vet ID will result in a 400 error and an error message.
 
 **Example Request**
 
@@ -689,7 +701,7 @@ Missing or invalid pet ID will result in a 400 error and an error message.
 
 {
     "id": "1000",
-    "medications": "Insulin 2x a day"
+    "address": "1000 New Address Road, Denver, CO 80204"
 }
 ```
 
@@ -697,7 +709,7 @@ Missing or invalid pet ID will result in a 400 error and an error message.
 
 ```json
 {
-    "error": "Pet with ID 1000 not found"
+    "error": "Vet with ID 1000 not found"
 }
 ```
 
