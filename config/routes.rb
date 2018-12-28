@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       patch '/owners', to: 'owners#update'
       post '/vets', to: 'vets#create'
       get '/vets', to: 'vets#index'
+      patch 'vets', to: 'vets#update'
       post '/pets', to: 'pets#create'
       get '/pets', to: 'pets#index'
       post '/reservations', to: 'reservations#create'
