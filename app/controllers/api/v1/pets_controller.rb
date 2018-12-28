@@ -1,4 +1,6 @@
 class Api::V1::PetsController < ApplicationController
+  before_action :get_pet, :verify_pet, only: :update
+
   def index
     render json: PetSerializer.new(Pet.all)
   end
@@ -13,7 +15,14 @@ class Api::V1::PetsController < ApplicationController
     end
   end
 
+  def update
+    pet.update(pet_params)
+    render json: { "message": "Pet updated" }, status: 201
+  end
+
   private
+
+  attr_reader :pet
 
   def pet_params
     params.require(:pet).permit(
@@ -31,5 +40,9 @@ class Api::V1::PetsController < ApplicationController
 
   def get_pet
     @pet ||= Pet.find_by_id(params[:id])
+  end
+
+  def verify_pet
+    render json: { "error": "Pet with ID #{params[:id]} not found" }, status: 400 if pet.nil?
   end
 end

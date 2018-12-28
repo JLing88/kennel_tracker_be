@@ -24,6 +24,10 @@ describe "Pet API endpoint" do
       patch '/api/v1/pets', headers: headers, params: payload.to_json
 
       result = JSON.parse(response.body, symbolize_names: true)
+      expect(response.status).to eq(201)
+      expect(result).to be_a(Hash)
+      expect(result).to have_key(:message)
+      expect(result[:message]).to eq("Pet updated")
     end
   end
 end
