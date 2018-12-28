@@ -4,7 +4,6 @@ Rails.application.routes.draw do
       namespace :reservations do
         get '/current', to: 'current#index'
       end
-      post '/reservations', to: 'reservations#create'
 
       get '/owners', to: 'owners#index'
       post '/owners', to: 'owners#create'
@@ -14,6 +13,8 @@ Rails.application.routes.draw do
       post '/pets', to: 'pets#create'
       get '/pets', to: 'pets#index'
       patch '/pets', to: 'pets#update'
+      post '/reservations', to: 'reservations#create'
+      patch '/reservations', to: 'reservations#update'
     end
   end
 end
