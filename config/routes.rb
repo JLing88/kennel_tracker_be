@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 
       get '/owners', to: 'owners#index'
       post '/owners', to: 'owners#create'
+      post '/vets', to: 'vets#create'
       get '/vets', to: 'vets#index'
       get '/pets', to: 'pets#index'
     end
