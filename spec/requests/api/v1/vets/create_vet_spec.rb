@@ -39,6 +39,15 @@ describe 'Vets API Endpoint' do
         phone: '303-555-1212',
         email: 'wac@gmail.com'
       }
+
+      post '/api/v1/vets', headers: headers, params: payload.to_json
+
+      result = JSON.parse(response.body, symbolize_names: true)
+      binding.pry
+      expect(response.status).to eq(400)
+      expect(result).to be_a(Hash)
+      expect(result).to have_key(:error)
+      expect(result[:error]).to eq("Practice name can't be blank, Vet name can't be blank")
     end
   end
 end

@@ -41,7 +41,7 @@ describe 'Owners API Endpoint' do
         cell_phone: '(720) 300-5000',
         email:      'mikecm@gmail.com'
       }
-      binding.pry
+
       post '/api/v1/owners', headers: headers, params: payload.to_json
 
       result = JSON.parse(response.body, symbolize_names: true)
