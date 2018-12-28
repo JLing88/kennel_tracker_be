@@ -34,7 +34,7 @@ describe 'Owners API Endpoint' do
       }
 
       payload = {
-        id: 2,
+        id: 1000,
         first_name: 'Steven'
       }
 
@@ -45,7 +45,7 @@ describe 'Owners API Endpoint' do
       expect(response.status).to eq(400)
       expect(result).to be_a(Hash)
       expect(result).to have_key(:error)
-      expect(result[:error]).to eq("Owner with ID 2 not found")
+      expect(result[:error]).to eq("Owner with ID 1000 not found")
     end
   end
 end
