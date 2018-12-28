@@ -199,6 +199,347 @@ and pet information.
     } ...
 ```
 
+#### POST /api/v1/reservations
+
+This endpoint allows a creation of a new reservation. __Pet ID must be valid,
+Owner ID must be valid, and checkin and checkout fields are required.__
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "pet_id": "1",
+    "owner_id": "1",
+    "run_number": "1",
+    "checkin": "2019-01-07",
+    "checkout": "2019-01-14",
+    "grooming": "true",
+    "daycare": "false",
+    "boarding": "true"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "message": "Reservation created"
+}
+```
+
+If pet ID or owner ID is missing or invalid, a 400 code is returned with the
+following error message.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "pet_id": "1000",
+    "run_number": "1",
+    "checkin": "2019-01-07",
+    "checkout": "2019-01-14",
+    "grooming": "true",
+    "daycare": "false",
+    "boarding": "true"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "error": "Pet must exist, Owner must exist"
+}
+```
+
+If checkin or checkout date is left blank, the following error message is returned
+along with a 400 status code.
+
+```json
+{
+    "error": "Checkin can't be blank, Checkout can't be blank"
+}
+```
+
+#### PATCH /api/v1/reservations
+
+This endpoint allows for the updating of a reservation. Reservation must be
+a valid reservation ID.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "id": "1",
+    "grooming": "false",
+    "daycare": "true",
+    "boarding": "false"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "message": "Reservation updated"
+}
+```
+
+If reservation ID is missing or invalid, the following error is returned with
+a 400 status.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "id": "1000",
+    "grooming": "false",
+    "daycare": "true",
+    "boarding": "false"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "error": "Reservation with ID 1000 not found"
+}
+```
+
+### Pet Endpoints
+
+#### GET /api/v1/pets
+
+This endpoint returns a list of all pets currently in the database.
+
+**Example Response**
+
+```json
+{
+    "data": [
+        {
+            "id": "1",
+            "type": "pet",
+            "attributes": {
+                "name": "Buster",
+                "species": "Dog",
+                "breed": "Swiss Mountain",
+                "color": "Gray",
+                "dob": "2015-02-22",
+                "spayedNeutered": true,
+                "medications": "None",
+                "feedingInstructions": "3 times a day 1/2 cup",
+                "shots": "Rabies: 12/10/2018",
+                "owner": [
+                    {
+                        "id": 9,
+                        "first_name": "Loida",
+                        "last_name": "Sawayn",
+                        "address": "Suite 357 7453 Randell Groves, Prestonburgh, AK 48663-0996",
+                        "home_phone": "699.681.8780",
+                        "cell_phone": "1-915-030-9958",
+                        "email": "thu@lehnerupton.net",
+                        "created_at": "2018-12-21T19:49:28.393-05:00",
+                        "updated_at": "2018-12-21T19:49:28.393-05:00"
+                    }
+                ]
+            }
+        },
+        {
+            "id": "2",
+            "type": "pet",
+            "attributes": {
+                "name": "Jack",
+                "species": "Dog",
+                "breed": "Japanese Spaniel",
+                "color": "Black",
+                "dob": "2012-09-11",
+                "spayedNeutered": true,
+                "medications": "None",
+                "feedingInstructions": "3 times a day 1/2 cup",
+                "shots": "Rabies: 12/10/2018",
+                "owner": [
+                    {
+                        "id": 4,
+                        "first_name": "Patty",
+                        "last_name": "Breitenberg",
+                        "address": "221 Hester Road, Lake Lionelbury, MD 01892-4029",
+                        "home_phone": "1-386-158-0477",
+                        "cell_phone": "1-653-772-7552",
+                        "email": "franchesca@pacochacormier.net",
+                        "created_at": "2018-12-21T19:49:28.352-05:00",
+                        "updated_at": "2018-12-21T19:49:28.352-05:00"
+                    }
+                ]
+            }
+        }, ...
+```
+
+#### POST /api/v1/pets
+
+This endpoint will create a new pet in the database. Returns a 201 upon
+successful entry. __Name, species, breed, color, DOB and the spayed/neutered
+field are all required.__
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "name": "George",
+    "species": "Dog",
+    "breed": "Catahoula",
+    "color": "Brindle",
+    "dob": "2017-06-05",
+    "spayed_neutered": "true",
+    "medications": "",
+    "feeding_instructions": "A lot of food!",
+    "shots": "All up to date"
+}
+```
+
+**Example Response
+
+```json
+{
+    "message": "Pet created"
+}
+```
+
+Missing or invalid parameters listed above will result in a status of 400
+and the following response.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "name": "George",
+    "dob": "2017-06-05",
+    "spayed_neutered": "true" 
+}
+```
+
+**Example Response**
+
+```json
+{
+    "error": "Species can't be blank, Breed can't be blank, Color can't be blank"
+}
+```
+
+#### PATCH /api/v1/pets
+
+This endpoint will allow updating of a specific given pet ID. Pet ID is required
+and must be a valid ID for successful patch.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "id": "1",
+    "medications": "Insulin 2x a day"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "message": "Pet updated"
+}
+```
+
+Missing or invalid pet ID will result in a 400 error and an error message.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "id": "1000",
+    "medications": "Insulin 2x a day"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "error": "Pet with ID 1000 not found"
+}
+```
+
 ### Vet Endpoints
 
 #### GET /api/v1/vets
@@ -233,6 +574,130 @@ This endpoint returns a list of all vets currently in the database.
             }
         } ...
     ]
+}
+```
+
+#### POST /api/v1/vets
+
+This endpoint will create a new vet in the database. Returns a 201 upon
+successful entry. __Practice name and vet name are required.__
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "practice_name": "Good Dog Hospital",
+    "vet_name": "Dr. Steven Tyler",
+    "address": "311 16th St., Home, CO 19292",
+    "phone": "620.333.2222",
+    "email": "steven@gdhospital.org"
+}
+```
+
+**Example Response
+
+```json
+{
+    "message": "Vet created"
+}
+```
+
+Missing or invalid parameters listed above will result in a status of 400
+and the following response.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "practice_name": "Good Dog Hospital",
+    "address": "311 16th St., Home, CO 19292",
+    "phone": "620.333.2222",
+    "email": "steven@gdhospital.org"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "error": "Vet name can't be blank"
+}
+```
+
+#### PATCH /api/v1/vets
+
+This endpoint will allow updating of a specific given vet ID. Vet ID is required
+and must be a valid ID for successful patch.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "id": "1",
+    "medications": "Insulin 2x a day"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "message": "Pet updated"
+}
+```
+
+Missing or invalid pet ID will result in a 400 error and an error message.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "id": "1000",
+    "medications": "Insulin 2x a day"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "error": "Pet with ID 1000 not found"
 }
 ```
 
@@ -333,5 +798,66 @@ result in an error and a 400 status code response.
 ```json
 {
     "error": "First name can't be blank, Last name can't be blank"
+}
+```
+
+#### PATCH /api/v1/owners
+
+This endpoint will update an owner with the given ID with the values provided.
+Not all values are required for a successful update. __ID however is a required
+attribute and must be a current, valid owner ID.__
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "id": "1",
+    "first_name": "Steven"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "message": "Owner updated"
+}
+```
+
+Missing and/or invalid owner ID or missing header values will result in an error
+and a 400 status code response.
+
+**Example Request**
+
+```json
+// *** Headers ***
+
+{
+    "Content-Type": "application/json",
+    "Accept": "application/json"
+}
+
+// *** Body ***
+
+{
+    "id": "10000",
+    "first_name": "Steven"
+}
+```
+
+**Example Response**
+
+```json
+{
+    "error": "Owner with ID 10000 not found"
 }
 ```
