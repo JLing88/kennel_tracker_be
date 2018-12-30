@@ -2,6 +2,7 @@ class Api::V1::PetsController < ApplicationController
   before_action :get_pet, :verify_pet, only: :update
 
   def index
+    binding.pry
     render json: PetSerializer.new(Pet.all)
   end
 
