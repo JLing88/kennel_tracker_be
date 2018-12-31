@@ -16,6 +16,7 @@ Rails.application.routes.draw do
       patch '/pets', to: 'pets#update'
       post '/reservations', to: 'reservations#create'
       patch '/reservations', to: 'reservations#update'
+      get '/logs', to: 'logs#index'
     end
   end
 end
