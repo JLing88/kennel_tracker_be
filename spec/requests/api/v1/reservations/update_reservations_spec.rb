@@ -1,13 +1,20 @@
 require 'rails_helper'
 
 describe 'Reservations API Endpoint' do
+
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
+
   context 'PATCH /api/v1/reservations' do
     it 'allows user to update a reservation' do
       reservation = create(:reservation)
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -33,7 +40,8 @@ describe 'Reservations API Endpoint' do
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -59,7 +67,8 @@ describe 'Reservations API Endpoint' do
     it 'will not update a reservation if reservation ID is invalid' do
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {

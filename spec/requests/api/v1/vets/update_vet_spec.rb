@@ -1,13 +1,18 @@
 require 'rails_helper'
 
 describe "Vet API endpoint" do
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
   context "PATCH /api/v1/vets" do
     it 'allows user to update an existing vet' do
       vet = create(:vet)
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"applicaton/json"
+        "Accept":"applicaton/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -35,7 +40,8 @@ describe "Vet API endpoint" do
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"applicaton/json"
+        "Accept":"applicaton/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {

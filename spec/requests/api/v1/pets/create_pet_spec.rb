@@ -1,11 +1,18 @@
 require 'rails_helper'
 
 describe 'Pets API Endpoint' do
+
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
+
   context 'POST /api/v1/pets' do
     it 'allows a user to create new pet' do
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -35,7 +42,8 @@ describe 'Pets API Endpoint' do
     it 'will not create a pet if any required fields are missing' do
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {

@@ -5,7 +5,10 @@ class Api::V1::SessionsController < ApplicationController
 
   def create
     user = User.find_by(email: auth_params[:email])
-    if user.authenticate(auth_params[:password])
+    if user == nil
+      render json: { 'error': 'Invalid credentials' }, status: 400
+    else
+      user.authenticate(auth_params[:password])
       jwt = Auth.issue({ user: user.id, exp: (Time.now + FOUR_HOURS_LATER).to_i})
       render json: {jwt: jwt}
     end
