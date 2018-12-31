@@ -1,6 +1,12 @@
 require 'rails_helper'
 
 describe 'Reservations API Endpoint' do
+
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
+
   context 'POST /api/v1/reservations' do
     it 'allows user to create a new reservation' do
       pet   = create(:pet)
@@ -8,7 +14,8 @@ describe 'Reservations API Endpoint' do
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -35,7 +42,8 @@ describe 'Reservations API Endpoint' do
     it 'will not create reservation if owner or pet is invalid' do
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -65,7 +73,8 @@ describe 'Reservations API Endpoint' do
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {

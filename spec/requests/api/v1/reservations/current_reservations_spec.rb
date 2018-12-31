@@ -1,6 +1,10 @@
 require 'rails_helper'
 
 describe 'Runs API' do
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
   context 'GET /api/v1/reservations/current' do
     it 'returns a list of active reservations' do
       owner1 = create(:owner)
@@ -8,7 +12,13 @@ describe 'Runs API' do
       reservation1, reservation2 = create_list(:reservation, 2, owner: owner1, checkin: 4.days.ago, checkout: 5.days.from_now)
       reservation3 = create(:reservation, owner: owner2, checkin: 10.days.ago, checkout: 7.days.ago)
 
-      get '/api/v1/reservations/current'
+      headers = {
+        "Content-Type":"application/json",
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
+      }
+
+      get '/api/v1/reservations/current', headers: headers
       current_resos = JSON.parse(response.body, symbolize_names: true)
 
       expect(response).to be_successful

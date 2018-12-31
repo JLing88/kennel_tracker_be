@@ -1,13 +1,18 @@
 require 'rails_helper'
 
 describe 'Owners API Endpoint' do
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
   context 'PATCH /api/v1/owners' do
     it 'allows user to update an owner' do
       owner = create(:owner)
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -30,7 +35,8 @@ describe 'Owners API Endpoint' do
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {

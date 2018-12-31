@@ -5,13 +5,15 @@ describe 'Pet API Endpoints' do
     it 'returns all pets and their owners' do
       owner_1, owner_2 = create_list(:owner, 2)
       pet_1, pet_2, pet_3, pet_4 = create_list(:pet, 4)
+      user = create(:user)
 
       PetOwner.create!(pet: pet_1, owner: owner_1)
       PetOwner.create!(pet: pet_1, owner: owner_2)
       PetOwner.create!(pet: pet_3, owner: owner_2)
       PetOwner.create!(pet: pet_4, owner: owner_2)
 
-      get '/api/v1/pets'
+      jwt = login_user(user)
+      get '/api/v1/pets', headers: { "Authorization" => "Bearer #{jwt}" }
 
       expect(response).to be_successful
 
