@@ -1,11 +1,17 @@
 require 'rails_helper'
 
 describe 'Vets API Endpoint' do
+
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
   context 'POST /api/v1/vets' do
     it 'allows user to create a new vet' do
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -29,7 +35,8 @@ describe 'Vets API Endpoint' do
     it 'will not create vet if any required fields are missing' do
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {

@@ -16,6 +16,7 @@ gem 'fast_jsonapi'
 gem 'figaro'
 gem 'faker'
 gem 'rack-cors', require: 'rack/cors'
+gem 'jwt'
 
 
 group :development, :test do
