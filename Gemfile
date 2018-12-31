@@ -17,6 +17,7 @@ gem 'figaro'
 gem 'faker'
 gem 'rack-cors', require: 'rack/cors'
 gem 'jwt'
+gem 'public_activity'
 
 
 group :development, :test do
