@@ -1,13 +1,20 @@
 require 'rails_helper'
 
 describe "Pet API endpoint" do
+
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
+
   context "PATCH /api/v1/pets" do
     it 'allows user to update an existing pet' do
       pet = create(:pet)
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"applicaton/json"
+        "Accept":"applicaton/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -35,7 +42,8 @@ describe "Pet API endpoint" do
 
       headers = {
         "Content-Type":"application/json",
-        "Accept":"applicaton/json"
+        "Accept":"applicaton/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {

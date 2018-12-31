@@ -1,11 +1,23 @@
 require 'rails_helper'
 
 describe 'Owner API Endpoints' do
+
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
+
   context 'GET /api/v1/owners' do
     it 'returns a collection of all owners' do
       owner1, owner2 = create_list(:owner, 2)
 
-      get '/api/v1/owners'
+      headers = {
+        "Content-Type":"application/json",
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
+      }
+
+      get '/api/v1/owners', headers: headers
 
       result = JSON.parse(response.body, symbolize_names: true)
 

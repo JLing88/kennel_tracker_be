@@ -1,11 +1,18 @@
 require 'rails_helper'
 
 describe 'Owners API Endpoint' do
+
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
+
   context 'POST /api/v1/owners' do
     it 'allows user to create a new owner' do
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {
@@ -30,7 +37,8 @@ describe 'Owners API Endpoint' do
     it 'will not create an owner if any fields are missing' do
       headers = {
         "Content-Type":"application/json",
-        "Accept":"application/json"
+        "Accept":"application/json",
+        "Authorization":"Bearer #{@jwt}"
       }
 
       payload = {

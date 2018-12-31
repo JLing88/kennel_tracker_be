@@ -1,9 +1,19 @@
 require 'rails_helper'
 
 describe 'Vet API Endpoints' do
+  before(:each) do
+    user = create(:user)
+    @jwt = login_user(user)
+  end
+
   it 'returns all vet info' do
     vet_1, vet_2, vet_3, vet_4, vet_5 = create_list(:vet, 5)
-    get '/api/v1/vets'
+    headers = {
+      "Content-Type":"application/json",
+      "Accept":"application/json",
+      "Authorization":"Bearer #{@jwt}"
+    }
+    get '/api/v1/vets', headers: headers
 
     expect(response).to be_successful
 
