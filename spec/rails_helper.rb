@@ -5,7 +5,9 @@ abort("The Rails environment is running in production mode!") if Rails.env.produ
 require 'rspec/rails'
 require 'simplecov'
 require 'support/request_spec_helper'
+require 'public_activity/testing'
 
+PublicActivity.enabled = false
 
 SimpleCov.start
 
