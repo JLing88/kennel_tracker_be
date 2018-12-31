@@ -9,6 +9,7 @@ class Api::V1::SessionsController < ApplicationController
       render json: { 'error': 'Invalid credentials' }, status: 400
     else
       user.authenticate(auth_params[:password])
+      user = User.find_by(email: auth_params[:email])
       jwt = Auth.issue({ user: user.id, exp: (Time.now + FOUR_HOURS_LATER).to_i})
       render json: {jwt: jwt}
     end
