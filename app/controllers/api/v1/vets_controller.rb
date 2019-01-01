@@ -8,7 +8,6 @@ class Api::V1::VetsController < ApplicationController
 
   def create
     vet = Vet.new(vet_params)
-
     if vet.save
       render json: { 'message': 'Vet created' }, status: 201
     else
