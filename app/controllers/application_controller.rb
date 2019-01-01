@@ -8,6 +8,10 @@ class ApplicationController < ActionController::Base
     !!current_user
   end
 
+  def admin?
+    current_user.role == 'admin'
+  end
+
   def current_user
     if auth_present?
       user = User.find(auth["user"])
@@ -20,7 +24,7 @@ class ApplicationController < ActionController::Base
   def authenticate
     render json: {error: "unauthorized"}, status: 401 unless logged_in?
   end
-  
+
   private
 
   def token
