@@ -17,7 +17,7 @@ Bundler.require(*Rails.groups)
 
 module KennelTrackerBe
   class Application < Rails::Application
-    config.autoload_paths << Rails.root.join('lib')
+    config.eager_load_paths << Rails.root.join('lib')
     config.time_zone = "America/New_York"
     config.load_defaults 5.2
     config.generators.system_tests = nil
