@@ -7,7 +7,6 @@ class Api::V1::UsersController < ApplicationController
     else
       render json: { 'error': user.errors.full_messages.join(', ') }, status: 400
     end
-    binding.pry
   end
 
   private
