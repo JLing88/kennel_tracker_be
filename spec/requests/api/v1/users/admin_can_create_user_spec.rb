@@ -47,7 +47,7 @@ describe 'User API Endpoint' do
 
       expect(response.status).to eq(400)
       expect(result).to have_key(:error)
-      expect(result[:error]).to eq('')
+      expect(result[:error]).to eq("Password can't be blank")
     end
   end
 end
