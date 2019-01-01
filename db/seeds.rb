@@ -1,3 +1,5 @@
+PublicActivity.enabled = false
+
 owners = []
 vets   = []
 pets   = []
@@ -76,9 +78,21 @@ puts "Creating Reservations"
     owner: owners.sample,
     run_number: runs.delete_at(rand(0..runs.length - 1)),
     checkin: Faker::Time.between(4.days.ago, Time.current),
-    checkout: Faker::Time.between(Time.current, 2.days.from_now),
+    checkout: Faker::Time.between(Time.current, 7.days.from_now),
     grooming: [true, false].sample,
     daycare: [true, false].sample,
     boarding: [true, false].sample
   )
 end
+
+puts "Creating User"
+User.create!(
+  email: 'test@test.com',
+  password: 'test_password',
+  password_confirmation: 'test_password',
+  first_name: 'Tester',
+  last_name: 'Smith',
+  role: 1
+)
+
+PublicActivity.enabled = true
