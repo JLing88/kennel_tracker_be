@@ -1,5 +1,12 @@
-<h1>Kennel#reservation_confirmation</h1>
+Hi <%= @owner.first_name %>,
 
-<p>
-  <%= @greeting %>, find me in app/views/kennel_mailer/reservation_confirmation.html.erb
-</p>
+This is an email confirmation for your reservation for <%= @pet.name %>.
+
+Date: <%= @reservation.checkin.to_date %>
+Services: <%= @reservation.services %>
+
+We look forward to seeing you!
+
+All the best,
+
+Riordan's Kennel
