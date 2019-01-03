@@ -4,6 +4,7 @@ class Api::V1::ReservationsController < ApplicationController
   def create
     reservation = Reservation.new(reservation_params)
     if reservation.save
+      send_confirmation_email(reservation)
       render json: { 'message': 'Reservation created' }, status: 201
     else
       render json: { 'error': reservation.errors.full_messages.join(', ') }, status: 400
@@ -20,6 +21,10 @@ class Api::V1::ReservationsController < ApplicationController
 
   private
   attr_reader :reservation
+
+  def send_confirmation_email(reservation)
+    KennelMailer.reservation_confirmation(reservation).deliver_now
+  end
 
   def reservation_params
     params
