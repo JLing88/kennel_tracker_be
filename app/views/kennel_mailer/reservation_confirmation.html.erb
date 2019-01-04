@@ -1,12 +1,12 @@
-Hi <%= @owner.first_name %>,
+Hi <%= @owner.first_name %>,<br>
 
-This is an email confirmation for your reservation for <%= @pet.name %>.
+This is an email confirmation for your reservation for <%= @pet.name %>.<br>
 
-Date: <%= @reservation.checkin.to_date %>
-Services: <%= @reservation.services %>
+<p>Date: <%= @reservation.checkin.to_date %></p>
+<p>Services: <%= @reservation.services %></p>
 
-We look forward to seeing you!
+<p>We look forward to seeing you!</p>
 
-All the best,
+All the best,<br>
 
 Riordan's Kennel
