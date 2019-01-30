@@ -52,10 +52,10 @@ This is a student led project with a real-world business application and use.
 
 ## Development Team
 
-* [Mike McKee](https://github.com/mikecm1141/)
-* [Jesse Ling](https://github.com/jling88)
-* [Ahmad Kayyali](https://github.com/kayyali18)
-* [Laura Shamus](https://github.com/lkshamus)
+* [Mike McKee](https://github.com/mikecm1141/) Backend API Team
+* [Jesse Ling](https://github.com/jling88) Backend API Team
+* [Ahmad Kayyali](https://github.com/kayyali18) Frontend Team
+* [Laura Shamus](https://github.com/lkshamus) Frontend Team
 
 ## System & Application Requirements
 
